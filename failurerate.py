@@ -101,10 +101,11 @@ def main():
 
     # Example failure times in hours
     failing_times = [550, 480, 680, 790, 860, 620]
+    # failing_times = [860, 920, 800]  # Example failure times in hours
     # failing_times = [0]  # Example failure times in hours
 
     # Warranty period in hours
-    warranty_period = 1000
+    warranty_period = 200
 
     # The number of units that have failed
     failing_units = len(failing_times)

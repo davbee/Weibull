@@ -5,39 +5,42 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
-from reliability.Distributions import (
-    Exponential_Distribution,
-    Lognormal_Distribution,
-    Weibull_Distribution,
-)
+from reliability.Distributions import (Exponential_Distribution,
+                                       Lognormal_Distribution,
+                                       Weibull_Distribution)
 from reliability.Fitters import Fit_Weibull_2P, Fit_Weibull_3P
-from reliability.Other_functions import crosshairs, histogram, make_right_censored_data
+from reliability.Other_functions import (crosshairs, histogram,
+                                         make_right_censored_data)
 from reliability.Probability_plotting import plot_points
 
 # https://reliability.readthedocs.io/en/latest/Quickstart%20for%20reliability.html#a-quick-example
-dist = Weibull_Distribution(alpha=30, beta=2)  # creates the distribution object
-data = dist.random_samples(
-    20, seed=42
-)  # draws 20 samples from the distribution. Seeded for repeatability
+# creates the distribution object
+dist = Weibull_Distribution(alpha=30, beta=2)
+
+# draws 20 samples from the distribution. Seeded for repeatability
+data = dist.random_samples(20, seed=42)
+
 plt.subplot(121)
-fit = Fit_Weibull_2P(
-    failures=data
-)  # fits a Weibull distribution to the data and generates the probability plot
+
+# fits a Weibull distribution to the data and generates the probability plot
+fit = Fit_Weibull_2P(failures=data)
 
 plt.subplot(122)
-fit.distribution.SF(
-    label="fitted distribution"
-)  # uses the distribution object from Fit_Weibull_2P and plots the survival function
-dist.SF(
-    label="original distribution", linestyle="--"
-)  # plots the survival function of the original distribution
-plot_points(
-    failures=data, func="SF"
-)  # overlays the original data on the survival function
+
+# uses the distribution object from Fit_Weibull_2P and
+# plots the survival function
+fit.distribution.SF(label="fitted distribution")
+
+# plots the survival function of the original distribution
+dist.SF(label="original distribution", linestyle="--")
+
+# overlays the original data on the survival function
+plot_points(failures=data, func="SF")
 
 plt.legend()
 plt.grid(True)  # enables the grid on the plot
 plt.show()
+
 
 # https://reliability.readthedocs.io/en/latest/Creating%20and%20plotting%20distributions.html#example-1
 dist = Weibull_Distribution(alpha=50, beta=2)  # this created the distribution object
@@ -45,11 +48,13 @@ dist.PDF()  # this creates the plot of the PDF
 plt.grid(True)  # enables the grid on the plot
 plt.show()
 
+
 # https://reliability.readthedocs.io/en/latest/Creating%20and%20plotting%20distributions.html#example-3
 sf = dist.SF(20)
-print(
-    "The value of the SF at 20 is", round(sf * 100, 2), "%"
-)  # we are converting the decimal answer (0.8521...) to a percentage
+
+# we are converting the decimal answer (0.8521...) to a percentage
+print("The value of the SF at 20 is", round(sf * 100, 2), "%")
+
 
 # https://reliability.readthedocs.io/en/latest/Creating%20and%20plotting%20distributions.html#example-4
 xvals = np.linspace(0, 1000, 1000)
@@ -72,6 +77,7 @@ plt.title(
 plt.xlim(0, 1000)
 plt.ylim(bottom=0)
 plt.show()
+
 
 # https://reliability.readthedocs.io/en/latest/Fitting%20a%20specific%20distribution%20to%20data.html#fitting-a-specific-distribution-to-data
 data = [
@@ -110,6 +116,7 @@ wb = Fit_Weibull_2P(failures=data)
 plt.grid(True)  # enables the grid on the plot
 plt.show()
 
+
 # https://reliability.readthedocs.io/en/latest/Fitting%20a%20specific%20distribution%20to%20data.html#example-2
 data = Weibull_Distribution(alpha=25, beta=4).random_samples(30)
 weibull_fit = Fit_Weibull_2P(
@@ -121,23 +128,28 @@ plt.legend()
 plt.grid(True)  # enables the grid on the plot
 plt.show()
 
+
 # https://reliability.readthedocs.io/en/latest/Fitting%20a%20specific%20distribution%20to%20data.html#example-3
 a = 30
 b = 2
 g = 20
 threshold = 55
-dist = Weibull_Distribution(alpha=a, beta=b, gamma=g)  # generate a weibull distribution
-raw_data = dist.random_samples(500, seed=2)  # create some data from the distribution
+# generate a weibull distribution
+dist = Weibull_Distribution(alpha=a, beta=b, gamma=g)
+# create some data from the distribution
+raw_data = dist.random_samples(500, seed=2)
+# right censor some of the data
 data = make_right_censored_data(
     raw_data, threshold=threshold
-)  # right censor some of the data
+)
 print("There are", len(data.right_censored), "right censored items.")
+# fit the Weibull_3P distribution
 wbf = Fit_Weibull_3P(
     failures=data.failures,
     right_censored=data.right_censored,
     show_probability_plot=False,
     print_results=False,
-)  # fit the Weibull_3P distribution
+)
 print(
     "Fit_Weibull_3P parameters:\nAlpha:",
     wbf.alpha,
@@ -146,9 +158,11 @@ print(
     "\nGamma",
     wbf.gamma,
 )
+# generates the histogram using optimal bin width and
+# shades the censored part as white
 histogram(
     raw_data, white_above=threshold
-)  # generates the histogram using optimal bin width and shades the censored part as white
+)  
 dist.PDF(label="True Distribution")  # plots the true distribution's PDF
 wbf.distribution.PDF(
     label="Fit_Weibull_3P", linestyle="--"
@@ -156,6 +170,7 @@ wbf.distribution.PDF(
 plt.title("Fitting comparison for failures and right censored data")
 plt.legend()
 plt.show()
+
 
 # https://reliability.readthedocs.io/en/latest/Fitting%20a%20specific%20distribution%20to%20data.html#example-5
 dist = Weibull_Distribution(alpha=500, beta=6)

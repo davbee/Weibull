@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weibull Analysis Results</title>
+</head>
+
+<body>
+    <h1>Weibull Analysis Results</h1>
+    <p><strong>Number of Units:</strong> {{ units }}</p>
+    <p><strong>Operational Time:</strong> {{ operational_time }} hours</p>
+    <p><strong>Failure Times:</strong> {{ failing_times }}</p>
+    <p><strong>Warranty Period:</strong> {{ warranty_period }} hours</p>
+    <p><strong>Number of Failing Units:</strong> {{ failing_units }}</p>
+    <p><strong>Number of Passing Units:</strong> {{ passing_units }}</p>
+    <p><strong>Total Operational Time:</strong> {{ total_op_time }} hours</p>
+    <p><strong>Failure Rate (λ):</strong> {{ failure_rate }}</p>
+    <p><strong>MTBF (θ):</strong> {{ mtbf }}</p>
+    <p><strong>Exponential Reliability Rate, %:</strong> {{ exp_rel_rate }}</p>
+    <p><strong>Weibull Reliability Rate, %:</strong> {{ wb_rel_rate }}</p>
+
+    <h2>Graphs</h2>
+    <img src="data:image/png;base64,{{ graph_data }}" alt="Weibull Graph">
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weibull Analysis Input</title>
+</head>
+
+<body>
+    <h1>Weibull Analysis Input</h1>
+    <form method="POST">
+        <label for="units">Number of Units:</label>
+        <input type="number" id="units" name="units" required><br><br>
+
+        <label for="operational_time">Operational Time (hours):</label>
+        <input type="number" id="operational_time" name="operational_time" required><br><br>
+
+        <label for="failing_times">Failure Times (comma-separated):</label>
+        <input type="text" id="failing_times" name="failing_times" required><br><br>
+
+        <label for="warranty_period">Warranty Period (hours):</label>
+        <input type="number" id="warranty_period" name="warranty_period" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>
