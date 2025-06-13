@@ -5,9 +5,9 @@ import numpy as np
 from scipy.stats import weibull_min
 
 # Define parameters
-shape = 2.0  # Shape parameter
-loc = 0  # Location parameter
-scale = 1.0  # Scale parameter
+shape = 2.0  # Shape parameter; # beta
+loc = 0  # Location parameter; gamma
+scale = 1.0  # Scale parameter; alpha
 
 # Create the distribution object
 dist = weibull_min(shape, loc, scale)

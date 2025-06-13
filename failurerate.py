@@ -116,7 +116,7 @@ def main():
     # Total operational time for failing units
     total_op_time = passing_units * operational_time + sum(failing_times)
 
-    # scale parameter for Weibull distribution
+    # scale parameter for Weibull distribution (alpha)
     scale_param = 2  # Example value for Weibull distribution
 
     # Generate operational times for passing units (e.g., fixed operational time of 1000 hours)

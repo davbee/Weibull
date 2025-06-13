@@ -15,7 +15,8 @@ from reliability.Probability_plotting import plot_points
 
 # https://reliability.readthedocs.io/en/latest/Quickstart%20for%20reliability.html#a-quick-example
 # creates the distribution object
-dist = Weibull_Distribution(alpha=30, beta=2)
+dist = Weibull_Distribution(alpha=30, beta=2, gamma=0)
+print(dist)
 
 # draws 20 samples from the distribution. Seeded for repeatability
 data = dist.random_samples(20, seed=42)

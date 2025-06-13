@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Parameters for the Weibull distribution
-shape = 2.0  # Example shape parameter
-scale = 1.0  # Example scale parameter
+shape = 2.0  # Example shape parameter; beta
+scale = 1.0  # Example scale parameter; alpha
 samplenum = 1000
 
 samples = np.random.weibull(shape, samplenum) * scale
